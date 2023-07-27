@@ -40,8 +40,15 @@ public class MainActivity extends AppCompatActivity {
     public void next_activity(View view) {
         mainActivity2.putExtra("choice", switch1.isChecked());
         String check = "";
+        String check2 = "";
         int flag = 0;
         check = firstNum.getText().toString();
+        check2 = mulOrPlus.getText().toString();
+        if(check.equals(".") || check.equals("-") || check.equals("-.") || check.equals(".-") || check2.equals(".") || check2.equals("-") || check2.equals("-.") || check2.equals(".-"))
+        {
+            Toast.makeText(getApplicationContext(), "illegal input", Toast.LENGTH_SHORT).show();
+            flag = 1;
+        }
         if(check.length() == 0)
         {
             Toast.makeText(getApplicationContext(), "must enter the first num", Toast.LENGTH_SHORT).show();
@@ -50,17 +57,18 @@ public class MainActivity extends AppCompatActivity {
         else
         {
             mainActivity2.putExtra("first_num", Double.parseDouble(check));
+
         }
-        check = mulOrPlus.getText().toString();
-        if(check.length() == 0)
+        if(check2.length() == 0)
         {
             Toast.makeText(getApplicationContext(), "must enter progressor", Toast.LENGTH_SHORT).show();
             flag = 1;
         }
         else
         {
-            mainActivity2.putExtra("progressor", Double.parseDouble(check));
+            mainActivity2.putExtra("progressor", Double.parseDouble(check2));
         }
+
         if(flag == 0)
         {
             startActivity(mainActivity2);
